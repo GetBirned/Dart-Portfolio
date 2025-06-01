@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-underline {
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  border-bottom: 4px solid transparent;
+  border-image: linear-gradient(to right, #14B8A6, #2563EB) 1;
+}
+
+@keyframes scroll-horizontal {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll-horizontal 20s linear infinite;
+}
+
+.skill-card {
+  position: relative;
+  z-index: 0;
+  transition: box-shadow 0.3s ease, z-index 0.3s ease;
+  overflow: visible;
+}
+
+.skill-card:hover {
+  z-index: 20;
+  box-shadow:
+    0 0   8px rgba(20,184,166,0.5),
+    0 0 16px rgba(37,99,235,0.5);
+}
