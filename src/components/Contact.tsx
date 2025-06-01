@@ -45,10 +45,9 @@ const Contact = () => {
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="p-8">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-semibold mb-4">Looking for New Opportunities</h3>
+              <h3 className="text-2xl font-semibold mb-4">I'd love to talk more!</h3>
               <p className="text-gray-600 leading-relaxed">
-                If you're looking for a software developer or website designer who is passionate about creating 
-                elegant, efficient solutions, I'd love to discuss how I can contribute to your team or project.
+                I don't take any opportunity to showcase my skills and become part of a team for granted. Feel free to reach out, and I’ll respond as soon as possible. Looking forward to connecting!
               </p>
             </div>
             

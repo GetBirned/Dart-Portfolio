@@ -44,7 +44,7 @@ const Hero = () => {
           ref={subtitleRef}
           className="text-xl md:text-2xl text-gray-600 mb-6"
         >
-          Creating real-world solutions through code and design.
+          Balancing design and development.
         </p>
 
         <div ref={ctaRef}>
