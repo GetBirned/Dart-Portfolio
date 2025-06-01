@@ -57,15 +57,18 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <a 
-          href="#home" 
-          className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-blue-600 transition-colors duration-300"
+        <a
+          href="#home"
           onClick={(e) => {
             e.preventDefault();
             scrollToSection('home');
           }}
         >
-          DB
+          <img
+            src="/images/DartBirnieGradient.png"
+            alt="Dart Birnie Logo"
+            className="h-10 w-auto transition-transform duration-200 ease-out hover:scale-105"
+          />
         </a>
         
         <nav className="hidden md:flex items-center space-x-8">
