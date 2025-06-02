@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// src/App.tsx
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -6,10 +7,28 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import './index.css'
+import './index.css';
+
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
+
+  // Fire a 'page_view' whenever the activeSection changes
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      const path = `/#${activeSection}`;
+      window.gtag('config', 'G-K65VQ4F7WW', {
+        page_path: path,
+        page_title: activeSection.charAt(0).toUpperCase() + activeSection.slice(1),
+      });
+    }
+  }, [activeSection]);
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
