@@ -26,6 +26,8 @@ const Hero = () => {
       window.scrollTo({ top: section.offsetTop - 80, behavior: 'smooth' });
     }
   };
+  
+  const myMnemonic = "DARR-tan-yen BUR-knee";
 
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-8 pb-32">
@@ -34,9 +36,36 @@ const Hero = () => {
           ref={titleRef}
           className="text-5xl md:text-6xl font-bold mb-8 leading-relaxed overflow-visible"
         >
-          <span className="block">Dartagnan Birnie</span>
+          <span className="relative inline-block group">
+            <span
+              className="
+                block 
+                transition-opacity duration-300 ease-in-out 
+                group-hover:opacity-0
+              "
+            >
+              Dartagnan Birnie
+            </span>
+            <span
+              className="
+                absolute inset-0 
+                flex items-center justify-center 
+                whitespace-nowrap 
+                transition-opacity duration-300 ease-in-out 
+                opacity-0 
+                group-hover:opacity-100
+              "
+            >
+              {myMnemonic}
+            </span>
+          </span>
+
+          {/*
+            Subtitle / gradient text remains below,
+            unaffected by the “height” of the name container.
+          */}
           <span className="block mt-2 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">
-            Software Engineer & Web Designer
+            Software Engineer &amp; Web Designer
           </span>
         </h1>
 
