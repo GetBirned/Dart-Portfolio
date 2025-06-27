@@ -18,27 +18,36 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`New Project Inquiry from ${formData.name}`);
-    const body = encodeURIComponent([
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Phone: ${formData.phone}`,
-      `Location: ${formData.location}`,
-      `Company: ${formData.company}`,
-      ``,
-      `Message:`,
-      `${formData.message}`
-    ].join('\n'));
-    
-    const mailtoLink = `mailto:dartbirnie@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink;
-    
-    // Reset form
-    setFormData({ name: '', email: '', phone: '', location: '', company: '', message: '' });
+
+    try {
+      const response = await fetch("https://formspree.io/f/mqabwkwz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Message sent! I’ll be in touch soon.");
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          location: '',
+          company: '',
+          message: ''
+        });
+      } else {
+        alert("Something went wrong. Please try again or email me directly.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("An unexpected error occurred. Please email me instead.");
+    }
   };
 
   return (
