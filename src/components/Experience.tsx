@@ -57,7 +57,7 @@ const Experience = () => {
     {
       id: 'freelance',
       title: 'Web Developer',
-      company: 'Self-employed - Alton, NH',
+      company: 'Designs By Dart - Alton, NH',
       period: 'Ongoing',
       icon: 'images/DartBirnie.png',
       description: [

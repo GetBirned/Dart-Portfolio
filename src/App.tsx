@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -7,6 +6,8 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import DesignsByDartPage from './components/DesignsByDartPage';
+import 'leaflet/dist/leaflet.css';
 import './index.css';
 
 declare global {
@@ -18,8 +19,9 @@ declare global {
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [mode, setMode] = useState<'portfolio' | 'designs'>('portfolio');
 
-  // Fire a 'page_view' whenever the activeSection changes
+  // For analytics (optional)
   useEffect(() => {
     if (typeof window !== 'undefined' && window.gtag) {
       const path = `/#${activeSection}`;
@@ -30,9 +32,13 @@ function App() {
     }
   }, [activeSection]);
 
+  if (mode === 'designs') {
+    return <DesignsByDartPage setMode={setMode} />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
-      <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <Navbar activeSection={activeSection} setActiveSection={setActiveSection} setMode={setMode} />
       <main>
         <section id="home" className="pt-16">
           <Hero />

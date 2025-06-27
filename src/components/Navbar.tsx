@@ -4,9 +4,10 @@ import { Menu, X, FileText } from 'lucide-react';
 interface NavbarProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
+  setMode: (mode: 'portfolio' | 'designs') => void;
 }
 
-const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
+const Navbar = ({ activeSection, setActiveSection, setMode }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -15,19 +16,19 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
-      
+
       const sections = document.querySelectorAll('section');
       sections.forEach(section => {
         const sectionTop = section.offsetTop - 100;
         const sectionHeight = section.offsetHeight;
-        
+
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
           setActiveSection(section.id);
         }
@@ -43,7 +44,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
     if (element) {
       window.scrollTo({
         top: element.offsetTop - 80,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
       setActiveSection(sectionId);
       setIsMobileMenuOpen(false);
@@ -51,7 +52,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
   };
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
       }`}
@@ -70,15 +71,15 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
             className="h-10 w-auto transition-transform duration-200 ease-out hover:scale-105"
           />
         </a>
-        
-        <nav className="hidden md:flex items-center space-x-8">
+
+        <nav className="hidden md:flex items-center space-x-6">
           {navItems.map(item => (
             <a
               key={item.id}
               href={`#${item.id}`}
               className={`text-sm font-medium transition-colors duration-300 ${
-                activeSection === item.id 
-                  ? 'text-teal-600' 
+                activeSection === item.id
+                  ? 'text-teal-600'
                   : 'text-gray-600 hover:text-teal-600'
               }`}
               onClick={(e) => {
@@ -89,6 +90,12 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
               {item.label}
             </a>
           ))}
+          <button
+            onClick={() => setMode('designs')}
+            className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+          >
+            Designs By Dart
+          </button>
           <a
             href="/Birnie_Resume.pdf"
             target="_blank"
@@ -106,15 +113,15 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
             Resume
           </a>
         </nav>
-  
-        <button 
+
+        <button
           className="md:hidden text-gray-600 hover:text-teal-600 transition-colors duration-300"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-      
+
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
@@ -123,8 +130,8 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                 key={item.id}
                 href={`#${item.id}`}
                 className={`text-sm font-medium px-4 py-2 rounded-md transition-colors duration-300 ${
-                  activeSection === item.id 
-                    ? 'bg-gray-100 text-teal-600' 
+                  activeSection === item.id
+                    ? 'bg-gray-100 text-teal-600'
                     : 'text-gray-600 hover:bg-gray-100 hover:text-teal-600'
                 }`}
                 onClick={(e) => {
@@ -135,6 +142,15 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                 {item.label}
               </a>
             ))}
+            <button
+              onClick={() => {
+                setMode('designs');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+            >
+              Switch to Designs By Dart
+            </button>
             <a
               href="/Birnie_Resume.pdf"
               target="_blank"
