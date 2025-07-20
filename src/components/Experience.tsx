@@ -44,7 +44,7 @@ const Experience = () => {
       title: 'Software Development Intern',
       company: 'Account Tree - Dover, NH',
       period: 'Summer Internship',
-      icon: 'images/accounttreelogo.png',
+      icon: 'images/accounttree/accounttreelogo.png',
       description: [
         'Contributed to the development of a student activity funds accounting application using JavaScript and PHP.',
         'Collaborated with senior developers to implement new features and improve existing functionality.',

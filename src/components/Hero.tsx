@@ -149,8 +149,6 @@ const Hero = () => {
     }
   };
 
-  const myMnemonic = 'DARR-tan-yen BUR-knee';
-
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-8 pb-32 bg-gray-50">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
@@ -159,19 +157,22 @@ const Hero = () => {
           ref={titleRef}
           className="text-5xl md:text-6xl font-bold mb-8 leading-relaxed overflow-visible"
         >
-          <span className="relative inline-block group">
-            <span className="block transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+          <span className="relative inline-block group w-full">
+            <span className="absolute inset-0 flex items-center justify-center px-4 text-center transition-opacity duration-300 ease-in-out group-hover:opacity-0 whitespace-nowrap">
               Dartagnan Birnie
             </span>
-            <span className="absolute inset-0 flex items-center justify-center whitespace-nowrap transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
-              {myMnemonic}
+            <span className="absolute inset-0 flex items-center justify-center px-4 text-center transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100 break-words leading-tight">
+              DARR-tan-yen BUR-knee
+            </span>
+            <span className="invisible px-4 block whitespace-nowrap">
+              Dartagnan Birnie
             </span>
           </span>
+
           <span className="block mt-2 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">
             Software Engineer &amp; Web Designer
           </span>
         </h1>
-
         <p
           ref={subtitleRef}
           className="text-xl md:text-2xl text-gray-600 mb-6"
